@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#a Bash script that stops 7-highlander
+#You cannot use kill or killall
+pkill -15 "bash ./7-highlander" -f
