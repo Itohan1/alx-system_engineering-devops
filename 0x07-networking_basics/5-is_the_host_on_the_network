@@ -3,10 +3,9 @@
 #Displays Usage: 5-is_the_host_on_the_network {IP_ADDRESS} if no argument passed
 #Ping the IP 5 times
 
-if [ $man -eq 0 ];
+if [[ $1 =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]];
 then
+	ping -c 5 "$1"
+else
 	echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
-	exit 1
 fi
-IP_ADDRESS=$1
-ping -c 5 $IP_ADDRESS
