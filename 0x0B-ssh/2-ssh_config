@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Your machine has an SSH configuration file for the local SSH client
+
+cat <<EOF >> ~/.ssh/config
+Host 530542-web-01
+  HostName 52.87.219.143
+  User ubuntu
+  IdentifyFile~/.ssh/school
+  PassWordAuthentification no
+EOF
