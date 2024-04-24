@@ -7,4 +7,4 @@ sudo ss -tuln | grep ':80'
 
 echo "Hello World!" > /var/www/html/index.html
 
-sudo service nginx start
+sudo service nginx restart
