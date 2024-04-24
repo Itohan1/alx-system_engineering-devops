@@ -3,7 +3,7 @@
 
 sudo apt update
 sudo apt-get -y install nginx
-sudo sed -i 's/80/80/g' /etc/nginx/sites-enabled/default
+#sudo sed -i 's/80/80/g' /etc/nginx/sites-enabled/default
 
 echo "Hello World!" > /var/www/html/index.html
 
