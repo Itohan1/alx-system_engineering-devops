@@ -3,7 +3,7 @@
 
 sudo apt update
 sudo apt-get -y install nginx
-sudo ss -tuln | grep '80'
+sudo ss -tuln | grep ':80'
 
 echo "Hello World!" > /var/www/html/index.html
 
