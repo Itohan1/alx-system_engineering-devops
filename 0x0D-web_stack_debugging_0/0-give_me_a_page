@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# debugging process
+# In this first debugging project, you will need to get Apache 
 
 sudo systemctl stop apache2
 sudo fuser -k -n tcp 8080
