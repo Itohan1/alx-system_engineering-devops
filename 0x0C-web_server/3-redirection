@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Configure your Nginx server so that /redirect_me is redirecting to another page
+
+sudo sed -i '24i\       rewrite ^/redirect_me [replacement link] permanent;' /etc/nginx/sites-available/default
+
+sudo service nginx restart

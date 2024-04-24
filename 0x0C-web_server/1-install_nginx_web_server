@@ -3,8 +3,11 @@
 
 sudo apt update
 sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTPS'
 sudo ss -tuln | grep ':80'
-
+sudo chown -R "$USER:$USER" /var/www/html
+sudo chmod -R 755 /var/www/
+cp /var/www/html/index.html /var/www/html/index.bak
 echo "Hello World!" > /var/www/html/index.html
 
 sudo service nginx restart
