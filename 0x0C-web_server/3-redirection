@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 #In this first task you need to configure web-02 to be identical
 
+sudo apt update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTPS'
+
 redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
 
 sudo sed -i 's|^.*location /redirect_me {.*$|location /redirect_me { '"$redirect_string"' }|' /etc/nginx/sites-available/default
