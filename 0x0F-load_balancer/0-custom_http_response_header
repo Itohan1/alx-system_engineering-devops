@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# In this first task you need to configure web-02 to be identical to web-01
+
+#!/usr/bin/env bash
+# Install nginx on your web-01
+
+sudo apt update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTPS'
+sudo ss -tuln | grep ':80'
+sudo chown -R "$USER:$USER" /var/www/html
+sudo chmod -R 755 /var/www/
+cp /var/www/html/index.html /var/www/html/index.bak
+echo "Hello World!" > /var/www/html/index.html
+
+redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
+
+#replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+
+#sudo sed -i "s#server_name _;#$replacement#" /etc/nginx/sites-enabled/default
+
+sudo sed -i "s|^.*\tlocation /redirect_me {.*$|location /redirect_me { '$redirect_string'}|" /etc/nginx/sites-enabled/default
+
+custom_page="/var/www/html/404.html"
+
+
+if [ ! -f "$custom_page" ]; then
+        echo -e "Ceci n'est pas une page \n" | sudo tee "$custom_page"
+fi
+
+sudo sed -i '/server_name _;/a \    error_page 404 /404.html;\n    location = /404.html {\n        root /var/www/html;\n        internal;\n    }' /etc/nginx/sites-available/default
+
+sudo sed -i "/server_name _;/a add_header X-Served-By "$HOSTNAME";" /etc/nginx/sites-enabled/default
+
+sudo systemctl restart nginx
+
