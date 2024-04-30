@@ -4,6 +4,10 @@
 sudo apt update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTPS'
+sudo chown -R "$USER:$USER" /var/www/html
+sudo chmod -R 755 /var/www/
+cp /var/www/html/index.html /var/www/html/index.bak
+echo "Hello World!" > /var/www/html/index.html
 
 redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
 
