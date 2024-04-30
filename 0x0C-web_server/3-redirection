@@ -9,12 +9,12 @@ sudo chmod -R 755 /var/www/
 cp /var/www/html/index.html /var/www/html/index.bak
 echo "Hello World!" > /var/www/html/index.html
 
-#redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
+redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
 
-replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+#replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
 
-sudo sed -i "s#server_name _;#$replacement#" /etc/nginx/sites-enabled/default
+#sudo sed -i "s#server_name _;#$replacement#" /etc/nginx/sites-enabled/default
 
-#sudo sed -i 's|^.*\tlocation /redirect_me {.*$|location /redirect_me { '"$redirect_string"' }|' /etc/nginx/sites-enabled/default
+sudo sed -i "s|^.*\tlocation /redirect_me {.*$|location /redirect_me { '$redirect_string'}|" /etc/nginx/sites-enabled/default
 
 sudo systemctl restart nginx
