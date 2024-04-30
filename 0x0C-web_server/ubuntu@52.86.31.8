@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#In this first task you need to configure web-02 to be identical
+
+custom_page="/var/www/html/404.html"
+
+
+if [ ! -f "$custom_page" ]; then
+	echo -e "Ceci n'est pas une page \n" | sudo tee "$custom_page"
+fi
+
+sudo sed -i '/server_name _;/a \    error_page 404 /404.html;\n    location = /404.html {\n        root /var/www/html;\n        internal;\n    }' /etc/nginx/sites-available/default
+
+sudo systemctl restart nginx
