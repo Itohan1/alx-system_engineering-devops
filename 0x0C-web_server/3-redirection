@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#In this first task you need to configure web-02 to be identical
+# In this first task you need to configure web-02 to be identical
 
 sudo apt update
 sudo apt-get -y install nginx
@@ -9,7 +9,7 @@ sudo chmod -R 755 /var/www/
 cp /var/www/html/index.html /var/www/html/index.bak
 echo "Hello World!" > /var/www/html/index.html
 
-redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
+#redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
 
 replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
 
