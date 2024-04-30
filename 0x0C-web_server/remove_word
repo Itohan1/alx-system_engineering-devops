@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+word_to_remove="permanenti"
+
+# Replace occurrences of the word_to_remove with an empty string in the file
+sudo sed -i "s/$word_to_remove//g" /etc/nginx/sites-available/default
+
+# Restart Nginx service or any other service if needed
+sudo service nginx restart
+

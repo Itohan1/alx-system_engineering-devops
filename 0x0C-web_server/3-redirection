@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Configure your Nginx server so that /redirect_me is redirecting to another page
+#In this first task you need to configure web-02 to be identical
 
-sudo sed -i '24i\       rewrite ^/redirect_me [replacement link] permanent;' /etc/nginx/sites-available/default
+redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
 
-sudo service nginx restart
+sudo sed -i 's|^.*location /redirect_me {.*$|location /redirect_me { '"$redirect_string"' }|' /etc/nginx/sites-available/default
+
+sudo systemctl restart nginx
