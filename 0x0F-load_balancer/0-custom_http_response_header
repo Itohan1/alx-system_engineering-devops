@@ -10,4 +10,4 @@ echo "Hello World!" > /var/www/html/index.html
 
 sudo sed -i "/server_name _;/a add_header X-Served-By '$HOSTNAME';" /etc/nginx/sites-enabled/default
 
-sudo systemctl restart nginx
+sudo service nginx restart
