@@ -7,5 +7,5 @@ redirect_string='return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;'
 
 sudo sed -i "/server_name _;/a location /redirect_me {\n\t ""$redirect_string"" \n\t}" /etc/nginx/sites-available/default
 
-sudo systemctl restart nginx
+sudo service nginx restart
 
