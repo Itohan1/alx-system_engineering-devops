@@ -30,7 +30,7 @@ fi
 
 sudo sed -i '/server_name _;/a \    error_page 404 /404.html;\n    location = /404.html {\n        root /var/www/html;\n        internal;\n    }' /etc/nginx/sites-available/default
 
-sudo sed -i "/server_name _;/a add_header X-Served-By "$HOSTNAME";" /etc/nginx/sites-enabled/default
+sudo sed -i "/server_name _;/a add_header X-Served-By '$HOSTNAME';" /etc/nginx/sites-enabled/default
 
 sudo systemctl restart nginx
 
