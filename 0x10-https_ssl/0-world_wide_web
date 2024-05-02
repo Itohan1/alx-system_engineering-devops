@@ -2,8 +2,9 @@
 # Configure your domain zone so that the subdomain www points to your load-balancer IP
  
 web2="web-02"
+hol="holberton.online"
 
-if [ "$#" -eq 1 ]; then
+if [ "$#" -eq 1 ] && [ "$1" = "$hol" ]; then
 	echo "The subdomain www is a A record and points to 54.210.47.110"
 	echo "The subdomain lb-01 is a A record and points to 54.210.47.110"
 	echo "The subdomain web-01 is a A record and points to 34.198.248.145"
