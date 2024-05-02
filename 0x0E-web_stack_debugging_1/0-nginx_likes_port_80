@@ -2,9 +2,9 @@
 # Using your debugging skills, find out what’s keeping your Ubuntu container’s
 
 sudo apt-get -y update
-sudo apt-get -y install nginx
 sudo apt -y install ufw
 sudo ufw enable
-sudo ufw allow 'Nginx HTTPS'
+sudo ufw allow 80/tcp
+sudo apt-get -y install nginx
 
 sudo service nginx restart
