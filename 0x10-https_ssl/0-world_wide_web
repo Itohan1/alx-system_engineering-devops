@@ -2,14 +2,36 @@
 # Configure your domain zone so that the subdomain www points to your load-balancer IP
  
 web2="web-02"
-hol="holberton.online"
+hol="itohan.tech"
+web1="web-01"
+lb="lb-01"
+wwb="www"
 
-if [ "$#" -eq 1 ] && [ "$1" = "$hol" ]; then
-	echo "The subdomain www is a A record and points to 54.210.47.110"
-	echo "The subdomain lb-01 is a A record and points to 54.210.47.110"
-	echo "The subdomain web-01 is a A record and points to 34.198.248.145"
-	echo "The subdomain web-02 is a A record and points to 54.89.38.100"
+#cut="subdomain=$(echo "$domain" | cut -d '.' -f1)"
+dig="$(dig lb-01.itohan.tech | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $4}')"
 
-elif [ "$#" -eq 2 ] && [ "$2" = "$web2" ]; then
-	echo "The subdomain web-02 is a A record and points to 54.89.38.100"
+get_ip() {
+	local dom="$1"
+	local dresult
+	dresult=$(dig +short "$dom")
+	echo "$dresult"
+}
+
+if [ -z "$1" ]; then
+	echo "no argument"
+elif [ "$#" -eq 1 ] && [ "$1" = "$hol" ]; then
+	echo "The subdomain www is a $dig record and points to $(get_ip lb-01.itohan.tech)"
+	echo "The subdomain lb-01 is a $dig record and points to $(get_ip lb-01.itohan.tech)"
+	echo "The subdomain web-01 is a $dig record and points to $(get_ip web-01.itohan.tech)"
+	echo "The subdomain web-02 is a $dig record and points to $(get_ip web-02.itohan.tech)"
+fi
+
+if [ "$#" -eq 2 ] && [ "$2" = "$web2" ]; then
+	echo "The subdomain web-02 is a $dig record and points to $(get_ip web-02.itohan.tech)"
+elif [ "$#" -eq 2 ] && [ "$2" = "$wwb" ]; then
+	echo "The subdomain www is a $dig record and points to $(get_ip www.itohan.tech)"
+elif [ "$#" -eq 2 ] && [ "$2" = "$web1" ]; then
+	echo "The subdomain web-01 is a $dig record and points to $(get_ip web-01.itohan.tech)"
+elif [ "$#" -eq 2 ] && [ "$2" = "$lb" ]; then
+	echo "The subdomain lb-01 is a $dig record and points to $(get_ip lb-01.itohan.tech)"
 fi
