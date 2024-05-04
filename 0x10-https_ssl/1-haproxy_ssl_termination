@@ -38,10 +38,13 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 frontend visual_end
         bind *:80
+	mode http
+	option forwardfor
         bind *:443 ssl crt /etc/haproxy/certs/www.itohan.tech.pem
         redirect scheme https code 301 if !{ ssl_fc }
         default_backend my_servers
 backend my_servers
         balance roundrobin
+	mode http
         server 530542-web-01 52.86.31.8:80 check
         server 530542-web-02 52.3.47.83:80 check
