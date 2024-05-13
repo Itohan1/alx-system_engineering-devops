@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Run software as another user
+
+var="$(id -u "$1" 2>/dev/null)"
+#anovar="no such user"
+
+if [ -z "$1" ]; then
+	echo "no argument"
+fi
+if [ -n "$var" ]; then
+	echo "$1"
+else
+	echo "user does not exits"
+fi
