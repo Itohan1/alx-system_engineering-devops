@@ -5,9 +5,9 @@ if ! [ -x "$(command -v ufw)" ]; then
 	sudo apt-get update
 	sudo apt-get install -y ufw
 fi
-#sudo ufw enable
+sudo ufw enable
 sudo ufw allow 22/tcp
 sudo ufw allow 443/tcp
 sudo ufw allow 80/tcp
 sudo ufw default deny incoming
-sudo ufw enable
+sudo ufw reload
