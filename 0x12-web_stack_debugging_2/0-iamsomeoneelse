@@ -7,8 +7,9 @@ if [ $# -ne 1 ]; then
 	echo "USAGE: ./programname <username>"
 	exit 1
 fi
-if id -u "$1" &>/dev/null; then
-	echo "$1"
+if id "$1" &>/dev/null; then
+	sudo -u "$1" whoami
 else
 	echo "user does not exits"
+	exit 1
 fi
