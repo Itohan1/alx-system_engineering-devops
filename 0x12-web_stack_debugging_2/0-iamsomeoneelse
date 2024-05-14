@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run software as another user
 
-var="$(id -u "$1")"
+var="$(id "$1")"
 #anovar="no such user"
 
 if [ -z "$1" ]; then
