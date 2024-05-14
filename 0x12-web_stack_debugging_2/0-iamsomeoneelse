@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 # Run software as another user
 
-var="$(id -u "$1")"
+#var="$(id -u "$1" &>/dev/null)"
 
-if [ $# -gt 1 ]; then
-	echo "no such argument"
+if [ $# -ne 1 ]; then
+	echo "USAGE: ./programname <username>"
 	exit 1
 fi
-if [ -z "$1" ]; then
-	echo "no argument"
-fi
-if [ -n "$var" ]; then
+if id -u "$1" &>/dev/null; then
 	echo "$1"
 else
 	echo "user does not exits"
