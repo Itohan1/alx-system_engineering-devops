@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run software as another user
 
-var="$(id "$1")"
+var="$(id -u "$1")"
 
 if [ $# -gt 1 ]; then
 	echo "no such argument"
