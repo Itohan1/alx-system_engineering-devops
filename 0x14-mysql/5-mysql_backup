@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Write a Bash script that generates a MySQL dump and creates a compressed archive out of it
 
-if [ -z "$1" ]; then
-	echo "$0 mising password"
+if [ $# -ne 1 ]; then
+	echo "USAGE: $0 <password>"
 	exit 1
 fi
 
@@ -11,15 +11,15 @@ dump_file="backup.sql"
 timestamp=$(date +"%d-%m-%Y")
 archive_file="$timestamp.tar.gz"
 sudo mysqldump -u root -p$1 --all-databases > backup.sql
-if [ $? -ne 0 ];
+if [ $? -ne 0 ]; then
 	echo "my sql dump failed"
 	exit 1
 fi
-tar -czf "$archive_file" "$dump_file"
+tar -cvzf "$archive_file" "$dump_file"
 
 if [ $? -ne 0 ]; then
 	echo "Error: failed to create compressed archive"
 	exit 1
 fi
 
-echo "$dump_file"
+#echo "$dump_
