@@ -13,7 +13,6 @@ if __name__ == '__main__':
     response = requests.get(url)
     response = response.json()
 
-    EMPLOYEE_NAME = response["username"]
     dict_row = {}
     var_list = []
 
@@ -21,9 +20,10 @@ if __name__ == '__main__':
         anoda_dict = {}
         anoda_dict['task'] = key['title']
         anoda_dict['completed'] = key['completed']
-        anoda_dict['username'] = EMPLOYEE_NAME
+        anoda_dict['username'] = response["username"]
         var_list.append(anoda_dict)
     dict_row[par] = var_list
 
-    with open("2.json", 'w') as path:
+    file_name = f'{par}.json'
+    with open(filename, 'w') as path:
         json.dump(dict_row, path)
