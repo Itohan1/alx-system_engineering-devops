@@ -2,6 +2,7 @@
 """repellendus veritatis molestias dicta incidunt"""
 import requests
 import sys
+import csv
 
 
 if __name__ == '__main__':
@@ -18,10 +19,16 @@ if __name__ == '__main__':
         if key['id'] == int(par):
             EMPLOYEE_NAME = key['username']
 
+    csv_row = []
+
     for key in response_purl:
         value = key['completed']
         anoda_value = key['title']
-        print(f'"{par}"', end='')
-        print(f',"{EMPLOYEE_NAME}",', end='')
-        print(f'"{value}",', end='')
-        print(f'"{anoda_value}"')
+        csv_row.append(f'"{par}"')
+        csv_row.append(f',"{EMPLOYEE_NAME}"')
+        csv_row.append(f',"{value}"')
+        csv_row.append(f',"{anoda_value}"')
+        csv_row.append("\n")
+    with open('2.csv', 'w') as output_file:
+        for cs in csv_row:
+            output_file.write(str(cs))
