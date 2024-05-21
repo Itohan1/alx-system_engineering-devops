@@ -6,7 +6,9 @@ import sys
 
 if __name__ == '__main__':
     url = 'https://jsonplaceholder.typicode.com/users/'
-    purl = f'https://jsonplaceholder.typicode.com/users/{sys.argv[1]}/todos'
+
+    par = sys.argv[1]
+    purl = f'https://jsonplaceholder.typicode.com/users/{par}/todos'
     response_purl = requests.get(purl)
     response_purl = response_purl.json()
     response = requests.get(url)
@@ -17,15 +19,15 @@ if __name__ == '__main__':
     for key in response_purl:
         if key['completed'] is True:
             anoda_todos.append(key)
-    length_purl = len(anoda_todos)
-    length_response = len(response_purl)
+    NUMBER_OF_DONE_TASKS = len(anoda_todos)
+    TOTAL_NUMBER_OF_TASKS = len(response_purl)
 
     for key in response:
         if key['id'] == 2:
-            value = key['name']
-            print(f'Employee {value}', end='')
-    print(f' is done with tasks({length_purl}/{length_response}):')
+            EMPLOYEE_NAME = key['name']
+            print(f'Employee {EMPLOYEE_NAME} is done with tasks', end='')
+    print(f' ({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):')
     for key in response_purl:
         if key['completed'] is True:
-            value = key['title']
-            print(f'\t {value}')
+            TASK_TITLE = key['title']
+            print(f'\t {TASK_TITLE}')
