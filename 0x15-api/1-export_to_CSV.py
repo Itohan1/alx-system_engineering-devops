@@ -29,6 +29,8 @@ if __name__ == '__main__':
         csv_row.append(f',"{value}"')
         csv_row.append(f',"{anoda_value}"')
         csv_row.append("\n")
-    with open('2.csv', 'w') as output_file:
+
+    file = f'{par}.csv'
+    with open(file, 'w') as output_file:
         for cs in csv_row:
             output_file.write(str(cs))
