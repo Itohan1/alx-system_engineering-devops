@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """repellendus veritatis molestias dicta incidunt"""
-import csv
+import json
 import requests
 import sys
-import json
 
 if __name__ == '__main__':
     par = sys.argv[1]
