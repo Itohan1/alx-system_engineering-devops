@@ -25,5 +25,5 @@ if __name__ == '__main__':
     dict_row[par] = var_list
 
     file_name = f'{par}.json'
-    with open(filename, 'w') as path:
+    with open(file_name, 'w') as path:
         json.dump(dict_row, path)
