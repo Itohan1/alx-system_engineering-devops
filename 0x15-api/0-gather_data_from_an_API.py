@@ -23,10 +23,10 @@ if __name__ == '__main__':
     TOTAL_NUMBER_OF_TASKS = len(response_purl)
 
     for key in response:
-        if key['id'] == 2:
+        if key['id'] == int(par):
             EMPLOYEE_NAME = key['name']
             print(f'Employee {EMPLOYEE_NAME} is done with tasks', end='')
-    print(f' ({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):')
+    print(f'({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):')
     for key in response_purl:
         if key['completed'] is True:
             TASK_TITLE = key['title']
