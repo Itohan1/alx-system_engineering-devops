@@ -1,35 +1,28 @@
 #!/usr/bin/python3
 """repellendus veritatis molestias dicta incidunt"""
-import csv
-import requests
-import sys
 import json
+import requests
 
 if __name__ == '__main__':
-    url = 'https://jsonplaceholder.typicode.com/users/'
-
-    par = sys.argv[1]
-    purl = f'https://jsonplaceholder.typicode.com/users/{par}/todos'
-    response_purl = requests.get(purl)
-    response_purl = response_purl.json()
+    url = f'https://jsonplaceholder.typicode.com/userse'
     response = requests.get(url)
     response = response.json()
 
+    dict_row = {}
+
     for key in response:
-        if key['id'] == int(par):
-            EMPLOYEE_NAME = key["username"]
+        var_list = []
+        id = key["id"]
+        purl = f'https://jsonplaceholder.typicode.com/users/{id}/todos'
+        response_purl = requests.get(purl)
+        response_purl = response_purl.json()
+        for j in response_purl:
+            each_user = {}
+            each_user["username"] = key["username"]
+            each_user['task'] = j['title']
+            each_user['completed'] = j['completed']
+            var_list.append(each_user)
+        dict_row[id] = var_list
 
-    value = []
-    dict_row = {par: []}
-    anoda_dict = {}
-    dict_row[par].append(anoda_dict)
-
-    for key in response_purl:
-        value = key['completed']
-        anoda_value = key['title']
-        dict_row[par].append(anoda_dict)
-        anoda_dict['task'] = value
-        anoda_dict['completed'] = anoda_value
-        anoda_dict['username'] = EMPLOYEE_NAME
-        with open("2.json", 'w') as path:
-            json.dump(dict_row, path)
+    with open("todo_all_employees.json", 'w') as path:
+        json.dump(dict_row, path)
