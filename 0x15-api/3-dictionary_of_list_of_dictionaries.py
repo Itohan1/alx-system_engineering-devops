@@ -4,7 +4,7 @@ import json
 import requests
 
 if __name__ == '__main__':
-    url = f'https://jsonplaceholder.typicode.com/user'
+    url = f'https://jsonplaceholder.typicode.com/users'
     response = requests.get(url)
     response = response.json()
 
